@@ -41,17 +41,17 @@ export default function Layout({
 					</>
 				) : (
 						<>
-							<Link href="/">
+							<Link href="/next-blog/">
 								<a>
 									<img
-										src="/images/icon_cypress.png"
+										src="/next-blog/images/icon_cypress.png"
 										className={`${styles.headerImage} ${utilStyles.borderCircle}`}
 										alt={name}
 									/>
 								</a>
 							</Link>
 							<h2 className={utilStyles.headingLg}>
-								<Link href="/">
+								<Link href="/next-blog/">
 									<a className={utilStyles.colorInherit}>{name}</a>
 								</Link>
 							</h2>
@@ -61,7 +61,7 @@ export default function Layout({
 			<main>{children}</main>
 			{!home && (
 				<div className={styles.backToHome}>
-					<Link href="/">
+					<Link href="/next-blog/">
 						<a>← Back to home</a>
 					</Link>
 				</div>
