@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "env NODE_ENV='production' next build",
+    "start": "next start",
+    "export": "npm run build && next export"
   },
   "dependencies": {
     "date-fns": "^2.15.0",
@@ -16,5 +17,10 @@
     "remark": "^12.0.1",
     "remark-html": "^12.0.0",
     "sass": "^1.26.10"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.26",
+    "@types/react": "^16.9.43",
+    "typescript": "^3.9.7"
   }
 }
