@@ -14,15 +14,15 @@ jobs:
           node-version: 12
       - name: install
         run: |
-          yarn install
+          npm install
       - name: build
         run: |
-          yarn build
+          npm run build
         env:
           GITHUB_PAGES: true
       - name: export
         run: |
-          yarn export
+          npm run export
           touch out/.nojekyll
       - name: deploy
         uses: peaceiris/actions-gh-pages@v2.3.1

@@ -25,13 +25,13 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: install
-      run: yarn install --frozen-lockfile
+      run: npm install
 
     - name: build
-      run: yarn build
+      run: npm run build
 
     - name: export
-      run: yarn export
+      run: npm run export
 
     - name: add nojekyll
       run: touch ./out/.nojekyll
