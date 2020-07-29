@@ -1,7 +1,6 @@
-require('dotenv').config();
 
 module.exports = {
 	// some configuration
-	assetPrefix: process.env.GITHUB_PAGES ? "/next-blog" : ""
+	assetPrefix: process.env.NODE_ENV === "production" ? "/project_name" : ""
 	// another configuration
 };
