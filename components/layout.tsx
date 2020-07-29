@@ -33,7 +33,7 @@ export default function Layout({
 				{home ? (
 					<>
 						<img
-							src="/images/icon_cypress.png"
+							src="/next-blog/images/icon_cypress.png"
 							className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
 							alt={name}
 						/>
