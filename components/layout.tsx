@@ -3,8 +3,8 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name: string = "Yamada"
-export const siteTitle: string = 'Next.js Sample Website'
+const name: string = "やまだ"
+export const siteTitle: string = 'やまだがエンジニアになるブログ'
 
 export default function Layout({
 	children,
@@ -33,7 +33,7 @@ export default function Layout({
 				{home ? (
 					<>
 						<img
-							src="/next-blog/images/icon_cypress.png"
+							src={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/icon_cypress.png`}
 							className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
 							alt={name}
 						/>
@@ -41,17 +41,17 @@ export default function Layout({
 					</>
 				) : (
 						<>
-							<Link href="/next-blog/">
+							<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
 								<a>
 									<img
-										src="/next-blog/images/icon_cypress.png"
+										src={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/icon_cypress.png`}
 										className={`${styles.headerImage} ${utilStyles.borderCircle}`}
 										alt={name}
 									/>
 								</a>
 							</Link>
 							<h2 className={utilStyles.headingLg}>
-								<Link href="/next-blog/">
+								<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
 									<a className={utilStyles.colorInherit}>{name}</a>
 								</Link>
 							</h2>
@@ -61,8 +61,8 @@ export default function Layout({
 			<main>{children}</main>
 			{!home && (
 				<div className={styles.backToHome}>
-					<Link href="/next-blog/">
-						<a>← Back to home</a>
+					<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
+						<a>← Homeに戻る</a>
 					</Link>
 				</div>
 			)}
