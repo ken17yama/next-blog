@@ -41,7 +41,7 @@ export default function Layout({
 					</>
 				) : (
 						<>
-							<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
+							<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
 								<a>
 									<img
 										src={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/icon_cypress.png`}
@@ -51,7 +51,7 @@ export default function Layout({
 								</a>
 							</Link>
 							<h2 className={utilStyles.headingLg}>
-								<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
+								<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
 									<a className={utilStyles.colorInherit}>{name}</a>
 								</Link>
 							</h2>
@@ -61,7 +61,7 @@ export default function Layout({
 			<main>{children}</main>
 			{!home && (
 				<div className={styles.backToHome}>
-					<Link href={`/${process.env.NODE_ENV === "production" ? "/next-blog" : ""}`}>
+					<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
 						<a>← Homeに戻る</a>
 					</Link>
 				</div>
