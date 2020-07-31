@@ -1,7 +1,7 @@
 .container {
 	max-width: 36rem;
 	padding: 0 1rem;
-	margin: 3rem auto 6rem;
+	margin: 2rem auto 4rem;
 }
 
 .header {
@@ -18,6 +18,11 @@
 .headerHomeImage {
   width: 8rem;
   height: 8rem;
+}
+
+.headingName{
+  margin: 1rem auto 0;
+  line-height: 1;
 }
 
 .backToHome {

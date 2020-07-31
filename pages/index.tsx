@@ -22,14 +22,14 @@ export default function Home({
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>やまだです。<br />東京でエンジニアをしているはずです。</p>
+        <p className={utilStyles.headingPg}>DevOpsエンジニアを目指しています！</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, created, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/[id]${process.env.NODE_ENV === "production" ? ".html" : ""}`} as={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/${id}${process.env.NODE_ENV === "production" ? ".html" : ""}`}>
+              <Link href={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/[id]${process.env.NODE_ENV === "production" ? ".html" : ""}`} as={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
