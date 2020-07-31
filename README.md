@@ -8,6 +8,7 @@ https://ken17yama.github.io/next-blog/
 - [x] TypeScriptの導入
 - [x] GitHub Pagesでの公開
 - [x] GitHub Actionsでの自動ビルド
+- [ ] コンポーネントのスタイル指定方法について考える
 - [ ] Search Consoleに登録
 - [ ] StoryBook導入
 - [ ] 404へのリダイレクト
