@@ -28,7 +28,7 @@ export default function Layout({
 				/>
 				<meta name="og:title" content={siteTitle} />
 				<meta name="twitter:card" content="summary_large_image" />
-				<link rel="shortcut icon" href={`${process.env.NODE_ENV === " production" ? "/next-blog" : ""}/images/favicon.ico`}></link>
+				<link rel="shortcut icon" href={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/favicon.ico`}></link>
 			</Head>
 			<header className={styles.header}>
 				{home ? (
