@@ -23,12 +23,12 @@ export function getSortedPostsData() {
 		// データを id と合わせる
 		return {
 			id,
-			...(matterResult.data as { date: string; title: string })
+			...(matterResult.data as { modified: string; title: string })
 		}
 	})
 	// 投稿を日付でソートする
 	return allPostsData.sort((a, b) => {
-		if (a.date < b.date) {
+		if (a.modified < b.modified) {
 			return 1
 		} else {
 			return -1
@@ -54,7 +54,7 @@ export async function getPostData(id) {
 	return {
 		id,
 		contentHtml,
-		...(matterResult.data as { date: string; title: string })
+		...(matterResult.data as { modified: string; title: string })
 	}
 }
 

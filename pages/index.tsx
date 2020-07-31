@@ -22,7 +22,7 @@ export default function Home({
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p className={utilStyles.headingPg}>DevOpsエンジニアを目指しています！</p>
+        <p className={utilStyles.headingPg}>DevOpsエンジニア目指してます！</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
