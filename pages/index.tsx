@@ -11,7 +11,7 @@ export default function Home({
   allPostsData
 }: {
   allPostsData: {
-    date: string
+    created: string
     title: string
     id: string
   }[]
@@ -27,14 +27,14 @@ export default function Home({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, created, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/[id]${process.env.NODE_ENV === "production" ? ".html" : ""}`} as={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/posts/${id}${process.env.NODE_ENV === "production" ? ".html" : ""}`}>
                 <a>{title}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={created} />
               </small>
             </li>
           ))}
