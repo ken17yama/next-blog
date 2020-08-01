@@ -2,7 +2,7 @@ const SitemapGenerator = require('sitemap-generator');
 
 // create generator
 const generator = SitemapGenerator('https://ken17yama.github.io/next-blog/', {
-	filepath: './sitemap.xml',
+	filepath: './out/sitemap.xml',
 	stripQuerystring: false
 });
 
