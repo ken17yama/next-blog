@@ -9,7 +9,7 @@ https://ken17yama.github.io/next-blog/
 - [x] GitHub Pagesでの公開
 - [x] GitHub Actionsでの自動ビルド
 - [x] 404へのリダイレクト
-- [ ] コンポーネントのスタイル指定方法について考える
+- [x] コンポーネントのスタイル指定方法について考える
 - [ ] Search Consoleに登録
 - [ ] StoryBook導入
 - [ ] 404エラーの自動検出

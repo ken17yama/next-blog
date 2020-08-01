@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../styles/layout.module.css'
-import utilStyles from '../styles/utils.module.css'
+
+import Layout from '../components/layout'
 
 export default function Custom404() {
 	return (
-		<div className={styles.container}>
+		<Layout>
 			<Head>
 				<title>ページが見つかりません。</title>
 				<meta name="robots" content="noindex" />
@@ -13,11 +12,6 @@ export default function Custom404() {
 			</Head>
 			<h1>404 - Page Not Found</h1>
 			<p>ごめんなさい...<br />お探しのページが見つかりませんでした。</p>
-			<div className={styles.backToHome}>
-				<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
-					<a>← Homeに戻る</a>
-				</Link>
-			</div>
-		</div>
+		</Layout>
 	)
 }
