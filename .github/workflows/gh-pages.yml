@@ -36,12 +36,12 @@ jobs:
     - name: add nojekyll
       run: touch ./out/.nojekyll
 
+    - name: add jekyll-sitemap
+      run: touch ./out/_config.yml
+            echo -e "plugins:\n  - jekyll-sitemap" > _config.yml
+
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./out
-
-    - uses: atymic/sitemap-ping-action@master
-      with:
-          sitemap-url: ${{ secrets.SITEMAP_URL }}
