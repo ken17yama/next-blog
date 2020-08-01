@@ -36,6 +36,9 @@ jobs:
     - name: add jekyll-sitemap
       run: echo -e "plugins:\n  - jekyll-sitemap" > ./out/_config.yml
 
+    - name: create sitemap
+      run: ${GITHUB_WORKSPACE}/bin/crawl.sh
+
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
