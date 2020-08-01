@@ -33,13 +33,19 @@ jobs:
     - name: export
       run: npm run export
 
+    - name: deploy1
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
+
     - name: crowl
       run: node scripts/crowl.js
 
     - name: create robots.txt
-      run: $ echo -e "User-Agent:*\nDisallow:\nSitemap:https://ken17yama.github.io/next-blog/sitemap.xml" > ./out/robots.txt
+      run: echo -e "User-Agent:*\nDisallow:\nSitemap:https://ken17yama.github.io/next-blog/sitemap.xml" > ./out/robots.txt
 
-    - name: deploy
+    - name: deploy2
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
