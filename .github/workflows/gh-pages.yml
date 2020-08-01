@@ -37,7 +37,7 @@ jobs:
       run: touch ./out/.nojekyll
 
     - name: add jekyll-sitemap
-      run: echo -e "plugins:\n  - jekyll-sitemap" > ./out/_config.yml
+      run: echo -e "gems:\n  - jekyll-sitemap" > ./out/_config.yml
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
