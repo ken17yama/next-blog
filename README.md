@@ -8,11 +8,11 @@ https://ken17yama.github.io/next-blog/
 - [x] TypeScriptの導入
 - [x] GitHub Pagesでの公開
 - [x] GitHub Actionsでの自動ビルド
+- [x] 404へのリダイレクト
 - [ ] コンポーネントのスタイル指定方法について考える
 - [ ] Search Consoleに登録
 - [ ] StoryBook導入
-- [ ] 404へのリダイレクト
-- [ ] 404の自動検出
+- [ ] 404エラーの自動検出
 
 ## 環境
 - react: 16.13.1

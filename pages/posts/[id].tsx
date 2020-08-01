@@ -13,6 +13,7 @@ export default function Post({
 	postData: {
 		title: string
 		created: string
+		modified: string
 		contentHtml: string
 	}
 }) {
@@ -24,7 +25,8 @@ export default function Post({
 			<article>
 				<h1 className={utilStyles.headingXl}>{postData.title}</h1>
 				<div className={utilStyles.lightText}>
-					<Date dateString={postData.created} />
+					<p className={utilStyles.dateText}>投稿日：<Date dateString={postData.created} /></p>
+					<p className={utilStyles.dateText}>更新日：<Date dateString={postData.modified} /></p>
 				</div>
 				<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
 			</article>

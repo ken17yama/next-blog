@@ -55,3 +55,11 @@
 .lightText {
   color: #999;
 }
+
+.dateText{
+  margin: 0;
+}
+
+.dateText:first-child{
+  margin-top: 1rem;
+}
