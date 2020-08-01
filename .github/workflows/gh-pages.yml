@@ -33,9 +33,6 @@ jobs:
     - name: export
       run: npm run export
 
-    - name: add nojekyll
-      run: rm ./out/.nojekyll
-
     - name: add jekyll-sitemap
       run: echo -e "plugins:\n  - jekyll-sitemap" > ./out/_config.yml
 
