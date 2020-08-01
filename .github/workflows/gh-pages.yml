@@ -41,3 +41,7 @@ jobs:
 
     - name: crowl
       run: node scripts/crowl.js
+
+
+    - name: crowl2
+      run: ls -lat
