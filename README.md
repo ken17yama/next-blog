@@ -12,6 +12,8 @@ https://ken17yama.github.io/next-blog/
 - [x] コンポーネントのスタイル指定方法について考える
 - [ ] Search Consoleに登録
 - [ ] StoryBook導入
+- [ ] カテゴリ一覧の追加
+- [ ] タグ一覧の追加
 - [ ] 404エラーの自動検出
 
 ## 環境
