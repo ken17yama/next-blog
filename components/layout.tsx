@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import styles from '../styles/layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+
+import HomeLink from './homeLink'
+import styles from './layout.module.scss'
+import utilStyles from '../styles/utils.module.scss'
 
 const name: string = "やまだ"
 export const siteTitle: string = 'やまだがエンジニアになるブログ'
@@ -61,11 +63,7 @@ export default function Layout({
 			</header>
 			<main>{children}</main>
 			{!home && (
-				<div className={styles.backToHome}>
-					<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
-						<a>← Homeに戻る</a>
-					</Link>
-				</div>
+				<HomeLink />
 			)}
 		</div>
 	)
