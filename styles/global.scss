@@ -21,7 +21,56 @@ a:hover {
   text-decoration: underline;
 }
 
+
+blockquote {
+  position: relative;
+  margin: 0;
+  padding: 0.5em 0.5em 0.5em 1em;
+  color: #464646;
+  background: #f3f3f3;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.5em;
+    transform: translateY(-50%);
+    width: 0;
+    height: calc(100% - 1em);
+    border-left: 3px solid #999999;
+  }
+  p{
+    margin: 0;
+    font-size: 0.75em;
+  }
+}
+
+h2{
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
 img {
   max-width: 100%;
   display: block;
+}
+
+p{
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 0.5em;
+  background-color: #364549;
+  color: #e3e3e3;
+  font-size: 0.75em;
+}
+
+ul{
+  padding-left: 1em;
+  li{
+    line-height: 0.9;
+    a{
+      font-size: 0.75em;
+    }
+  }
 }
