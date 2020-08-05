@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link'
 
+import GlobalHeader from './globalHeader'
 import HomeLink from './homeLink'
 import styles from './layout.module.scss'
-import utilStyles from '../styles/utils.module.scss'
 
-const name: string = "やまだ"
-export const siteTitle: string = 'やまだがエンジニアになるブログ'
+import { siteTitle, authorName } from '../config/global.config'
 
 export default function Layout({
 	children,
@@ -32,39 +30,15 @@ export default function Layout({
 				<meta name="twitter:card" content="summary_large_image" />
 				<link rel="shortcut icon" href={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/favicon.ico`}></link>
 			</Head>
-			<header className={styles.header}>
-				{home ? (
-					<>
-						<img
-							src={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/icon_cypress.png`}
-							className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-							alt={name}
-						/>
-						<h1 className={styles.headingName}>{name}</h1>
-					</>
-				) : (
-						<>
-							<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
-								<a>
-									<img
-										src={`${process.env.NODE_ENV === "production" ? "/next-blog" : ""}/images/icon_cypress.png`}
-										className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-										alt={name}
-									/>
-								</a>
-							</Link>
-							<h2 className={utilStyles.headingLg}>
-								<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>
-									<a className={utilStyles.colorInherit}>{name}</a>
-								</Link>
-							</h2>
-						</>
-					)}
-			</header>
-			<main>{children}</main>
-			{!home && (
-				<HomeLink />
-			)}
+			<GlobalHeader siteTitle={siteTitle} authorName={authorName} />
+			<main>
+				{children}
+				{!home && (
+					<HomeLink />
+				)}
+			</main>
+
+
 		</div>
 	)
 }

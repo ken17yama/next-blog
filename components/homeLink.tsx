@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './homeLink.module.scss'
 
-export default function Layout() {
+export default function homeLink() {
 	return (
 		<div className={styles.backToHome}>
 			<Link href={`/${process.env.NODE_ENV === "production" ? "next-blog" : ""}`}>

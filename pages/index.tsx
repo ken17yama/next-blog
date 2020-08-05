@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { getSortedPostsData } from '../lib/posts'
 import { GetStaticProps } from 'next'
 
-import Layout, { siteTitle } from '../components/layout'
+import Layout from '../components/layout'
 import Date from '../components/date'
 import utilStyles from '../styles/utils.module.scss'
 
+import { siteTitle } from '../config/global.config'
 
 export default function Home({
   allPostsData
@@ -23,11 +24,8 @@ export default function Home({
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p className={utilStyles.headingPg}>DevOpsエンジニア目指してます！</p>
-      </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>記事一覧</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, created, title }) => (
             <li className={utilStyles.listItem} key={id}>

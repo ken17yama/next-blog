@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
 }
@@ -13,26 +12,25 @@ body {
 }
 
 a {
-  color: #0070f3;
+  color: #272343;
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
-
 
 blockquote {
   position: relative;
   margin: 0;
-  padding: 0.5em 0.5em 0.5em 1em;
+  padding: .5em .5em .5em 1em;
   color: #464646;
   background: #f3f3f3;
   &::before{
     content: "";
     position: absolute;
     top: 50%;
-    left: 0.5em;
+    left: .5em;
     transform: translateY(-50%);
     width: 0;
     height: calc(100% - 1em);
@@ -40,13 +38,18 @@ blockquote {
   }
   p{
     margin: 0;
-    font-size: 0.75em;
+    font-size: .75em;
   }
+}
+
+h1{
+  margin-bottom: 0;
 }
 
 h2{
   margin-top: 1.5em;
   margin-bottom: 0;
+  color: #272343;
 }
 
 img {
@@ -54,23 +57,33 @@ img {
   display: block;
 }
 
+main{
+  max-width: 36rem;
+  margin: 2rem auto 0;
+	padding: 0 1rem;
+}
+
 p{
-  font-size: 0.9em;
+  margin-bottom: 0;
+  color: #2d334a;
+  font-size: .9em;
 }
 
 pre {
-  padding: 0.5em;
+  padding: .5em;
   background-color: #364549;
   color: #e3e3e3;
-  font-size: 0.75em;
+  font-size: .75em;
 }
 
 ul{
   padding-left: 1em;
+  list-style: square;
   li{
-    line-height: 0.9;
+    margin-top: .5em;
+    line-height: .9;
     a{
-      font-size: 0.75em;
+      font-size: .75em;
     }
   }
 }
