@@ -1,5 +1,5 @@
 ---
-title: 'GitBashにalianを登録する（永続化）'
+title: 'GitBashにaliasを登録する（永続化）'
 created: '2020-08-02'
 modified: '2020-08-02'
 category: 'DevOps'

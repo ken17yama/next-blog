@@ -1,11 +1,13 @@
 import Head from 'next/head'
 
-import { getAllPostIds, getPostData } from '../../lib/posts'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import Layout from '../../components/layout'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.scss'
+
+import { getAllPostIds, getPostData } from '../../lib/posts'
+import { siteTitle } from '../../config/global.config'
 
 export default function Post({
 	postData
@@ -20,7 +22,7 @@ export default function Post({
 	return (
 		<Layout>
 			<Head>
-				<title>{postData.title}</title>
+				<title>{postData.title} | {siteTitle}</title>
 			</Head>
 			<article>
 				<h1 className={utilStyles.headingXl}>{postData.title}</h1>
