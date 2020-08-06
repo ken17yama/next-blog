@@ -17,7 +17,7 @@ export default function Tags({
 	}[]
 }) {
 	return (
-		<Layout home>
+		<Layout>
 			<Head>
 				<title>{siteTitle}</title>
 			</Head>

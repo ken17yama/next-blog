@@ -17,7 +17,7 @@ export default function Categories({
 	}[]
 }) {
 	return (
-		<Layout home>
+		<Layout>
 			<Head>
 				<title>{siteTitle}</title>
 			</Head>

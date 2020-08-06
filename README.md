@@ -11,6 +11,7 @@ https://ken17yama.github.io/next-blog/
 - [x] 404へのリダイレクト
 - [x] コンポーネントのスタイル指定方法について考える
 - [x] Search Consoleに登録
+- [ ] lib/posts.tsxのリファクタリング（処理の重複がある）
 - [ ] StoryBook導入
 - [x] カテゴリ一覧の追加
 - [x] タグ一覧の追加
