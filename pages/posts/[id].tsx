@@ -6,7 +6,7 @@ import Layout from '../../components/layout'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.scss'
 
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllPostIds, getPostData, getAllPostTags } from '../../lib/posts'
 import { siteTitle } from '../../config/global.config'
 
 export default function Post({
