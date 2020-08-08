@@ -1,7 +1,7 @@
 ---
 title: 'JavaScripで二次元配列をソートする'
-created: '2020-08-02'
-modified: '2020-08-02'
+created: '2020-08-09'
+modified: '2020-08-09'
 category: 'JavaScrip'
 tags: ['JavaScrip', 'ソート']
 ---
