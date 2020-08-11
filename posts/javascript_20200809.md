@@ -1,15 +1,15 @@
 ---
-title: 'JavaScripで二次元配列をソートする'
+title: 'JavaScriptで二次元配列をソートする'
 created: '2020-08-09'
 modified: '2020-08-09'
-category: 'JavaScrip'
-tags: ['JavaScrip', 'ソート']
+category: 'JavaScript'
+tags: ['JavaScript', 'ソート']
 ---
 
 こんにちは！<br>
 学生時代から計算量についての問題から逃げ続けていたのでそろそろ向き合う決心をした、やまだです。
 
-この記事では、**JavaScripで二次元配列をソートする**方法のアウトプットです。
+この記事では、**JavaScriptで二次元配列をソートする**方法のアウトプットです。
 
 まずは、配列の最初の要素をキーとしてソートする方法です。<br>
 sortの引数にソート順を定義する**比較関数**を定義します。
