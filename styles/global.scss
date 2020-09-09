@@ -37,6 +37,7 @@ blockquote {
     border-left: 3px solid #999999;
   }
   p{
+    overflow-x: scroll;
     margin: 0;
     font-size: .75em;
   }
@@ -58,6 +59,7 @@ img {
 }
 
 main{
+  width: 100%;
   max-width: 36rem;
   margin: 2rem auto 4rem;
 	padding: 0 1rem;
