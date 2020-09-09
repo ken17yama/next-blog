@@ -93,3 +93,15 @@ ul{
     }
   }
 }
+
+ol {
+  padding-left: 1em;
+  li{
+    margin-top: .5em;
+    font-size: 0.9em;
+    line-height: 1.25;
+    a{
+      font-size: .75em;
+    }
+  }
+}
