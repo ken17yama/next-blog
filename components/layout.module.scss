@@ -1,5 +1,8 @@
 .container {
-	margin: 0 auto 4rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+	margin: 0 auto;
 }
 
 .header {

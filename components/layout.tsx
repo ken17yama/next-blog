@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
 import GlobalHeader from './globalHeader'
+import GlobalFooter from './globalFooter'
 import HomeLink from './homeLink'
 import styles from './layout.module.scss'
 
@@ -37,7 +38,7 @@ export default function Layout({
 					<HomeLink />
 				)}
 			</main>
-
+			<GlobalFooter />
 
 		</div>
 	)
