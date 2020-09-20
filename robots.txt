@@ -1,3 +1,0 @@
-User-Agent:*
-Disallow:
-Sitemap:https://ken17yama.github.io/next-blog/sitemap.xml
