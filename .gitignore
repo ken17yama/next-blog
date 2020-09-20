@@ -15,6 +15,7 @@
 # production
 /build
 /posts/devops_20200731.md
+/posts/db_20200921.md
 
 # misc
 .DS_Store

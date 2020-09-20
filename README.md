@@ -12,6 +12,7 @@ https://ken17yama.github.io/next-blog/
 - [x] コンポーネントのスタイル指定方法について考える
 - [x] Search Consoleに登録
 - [x] <code>のスタイル修正
+- [ ] Tableがコンパイルされない！
 - [ ] 公開ステータスの管理（下書き・公開など）
 - [ ] lib/posts.tsxのリファクタリング（処理の重複がある）
 - [ ] StoryBook導入
