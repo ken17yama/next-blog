@@ -1,0 +1,98 @@
+<!DOCTYPE html><html><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-164019925-1"></script><script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-164019925-1', {
+              page_path: window.location.pathname,
+            });
+          </script><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><meta name="description" content="Learn how to build a personal website using Next.js"/><meta property="og:image" content="https://og-image.now.sh/%E3%82%84%E3%81%BE%E3%81%A0%E3%81%AE%E3%83%AD%E3%82%B0.png?theme=light&amp;md=0&amp;fontSize=75px&amp;images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg"/><meta name="og:title" content="やまだのログ"/><meta name="twitter:card" content="summary_large_image"/><link rel="shortcut icon" href="/next-blog/images/favicon.ico"/><link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet"/><title>ユーザーと所属するグループをデータベースで表現する | やまだのログ</title><meta name="next-head-count" content="9"/><link rel="preload" href="/next-blog/_next/static/css/d4b67190fbd8b124f56f.css" as="style"/><link rel="stylesheet" href="/next-blog/_next/static/css/d4b67190fbd8b124f56f.css"/><link rel="preload" href="/next-blog/_next/static/css/9add45e0783f4fe66842.css" as="style"/><link rel="stylesheet" href="/next-blog/_next/static/css/9add45e0783f4fe66842.css"/><link rel="preload" href="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/pages/posts/%5Bid%5D.js" as="script"/><link rel="preload" href="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/pages/_app.js" as="script"/><link rel="preload" href="/next-blog/_next/static/runtime/webpack-b65cab0b00afd201cbda.js" as="script"/><link rel="preload" href="/next-blog/_next/static/chunks/framework.98c1b221acb34aa9927b.js" as="script"/><link rel="preload" href="/next-blog/_next/static/chunks/commons.2c828375ee41a97809f1.js" as="script"/><link rel="preload" href="/next-blog/_next/static/runtime/main-cd43ac25262d340309c6.js" as="script"/><link rel="preload" href="/next-blog/_next/static/chunks/9022090fdbf2bac6b7341145da0c987934062cdf.1fa8c98d2e476ae4afa4.js" as="script"/><link rel="preload" href="/next-blog/_next/static/chunks/e3a9f44c72ef9f951fe739c8246570398eff8d58.6f64ddc331fea60ad50f.js" as="script"/></head><body><div id="__next"><div class="layout_container__3sC0E"><header class="globalHeader_header__37-yV"><div class="globalHeader_siteTitle__2KO86"><a href="/next-blog">やまだのログ</a></div><div><a href="/next-blog/author"><img src="/next-blog/images/icon_cypress.png" class="authorIcon_borderCircle__F1U9y authorIcon_headerImage__10a7p undefined" alt="やまだ"/></a></div></header><main><article><h1 class="utils_headingXl__3wKvI">ユーザーと所属するグループをデータベースで表現する</h1><div class="utils_lightText__3895Y"><p class="utils_dateText__2L929">投稿日：<time dateTime="2020-09-21">2020/09/21</time></p><p class="utils_dateText__2L929">更新日：<time dateTime="2020-09-21">2020/09/21</time></p></div><div><p>こんにちは！<br>
+ユーザーとグループ（チームや組織）をデータベースで表現しようとしている、やまだです。</p>
+<p>今回はデータベース（今回はMySQL）で、ユーザーとそれらが所属するグループの表現をしようとしたときのメモを記載します。
+まず、以下のように<strong>users</strong>と<strong>groups</strong>のテーブルを定義します。</p>
+<ul>
+<li>
+<p><strong>■usersテーブル</strong>
+|  id  |  name  |
+| ---- | ---- |
+|  1  |  やまだ  |
+|  2  |  嫁  |
+|  3  |  ながさわ  |
+|  4  |  まつ  |</p>
+</li>
+<li>
+<p><strong>■groupsテーブル</strong>
+|  id  |  name  |
+| ---- | ---- |
+|  1  |  やまだ家  |
+|  2  |  女優  |
+|  3  |  女性  |</p>
+</li>
+</ul>
+<p>それぞれのユーザーがどこのグループに所属しているのかを表現するのが良いでしょうか。
+自分がこれを始めてみた時には、既存の<strong>users</strong>もしくは<strong>groups</strong>のテーブルどちらかに配列のフィールドを追加し、そこに都度ユーザーやグループを登録していけばいいのではないかと考えました。（PHPのarray_pushのように…）</p>
+<ul>
+<li><strong>例えばこんなふうに…</strong>
+|  id  |  name  |  users  |
+| ---- | ---- | ---- |
+|  1  |  やまだ家  |  [1, 2]  |
+|  2  |  女優  |  [3, 4]  |
+|  3  |  女性  |  [2, 3, 4]  |</li>
+</ul>
+<p><strong>しかしこれはアンチパターンと呼ばれるものです！</strong></p>
+<p>では、なぜだめなのか考えてみましょう。
+例えば「嫁」が所属するグループを調べたいとき、おそらく「LIKE句」等で検索する方法に行きつくのではないでしょうか。
+少しのデータをならそこまで影響は出ないかもしれませんが、データが増えるにつれてパフォーマンスがおちたり、おなじ文字列を含むものまで一緒に取得することになってしまいませんか？（もちろん，をうまく利用して一致させる事もできそうですが）</p>
+<p>これを解決する方法は以下のような<strong>交差テーブル</strong>をつくってあげることです。</p>
+<ul>
+<li>
+<p><strong>■交差テーブル（group_user）</strong>
+|  user_id  |  group_id  |
+| ---- | ---- |
+|  1  |  1  |
+|  2  |  1  |
+|  2  |  3  |
+|  3  |  2  |
+|  3  |  3  |
+|  4  |  2  |
+|  4  |  3  |</p>
+</li>
+<li>
+<p><strong>■usersテーブル</strong>
+|  id  |  name  |
+| ---- | ---- |
+|  1  |  やまだ  |
+|  2  |  嫁  |
+|  3  |  ながさわ  |
+|  4  |  まつ  |</p>
+</li>
+<li>
+<p><strong>■groupsテーブル</strong>
+|  id  |  name  |
+| ---- | ---- |
+|  1  |  やまだ家  |
+|  2  |  女優  |
+|  3  |  女性  |</p>
+</li>
+</ul>
+<p>このようにすることで、例えば「嫁」の所属するグループを知りたいときは以下のようなSQLを叩けばほしい情報を取得することができます。</p>
+<pre><code>SELECT gu.group_id, g.name FROM users AS u
+    INNER JOIN group_user AS gu ON u.id = gu.user_id
+    INNER JOIN groups AS g ON gu.group_id = g.id
+WHERE u.id = 2;
+</code></pre>
+<ul>
+<li><strong>■所属グループ</strong>
+|  group_id  |  name  |
+| ---- | ---- |
+|  1  |  やまだ家  |
+|  2  |  女優  |
+|  3  |  女性  |</li>
+</ul>
+<p>以上でアンチパターンを回避したユーザーのグループ管理ができるかと思います！ではまた！</p>
+<h2>参考</h2>
+<ul>
+<li><a href="http://www.flint.jp/blog/?entry=23">関係データベースにおける配列の表現</a></li>
+<li><a href="https://kyabatalian.hatenablog.com/entry/2016/12/19/193430">データベース論理設計のアンチパターン</a></li>
+<li><a href="https://qiita.com/matsuhisa_h/items/6b4e552f4b6eb7d72d60">SQLアンチパターン：ジェイウォーク（信号無視）</a></li>
+</ul>
+</div></article><div class="homeLink_backToHome__4if1t"><a href="/next-blog">← Homeに戻る</a></div></main><footer class="globalFooter_footer__1VOSo"><div class="globalFooter_copyright__T7jIG">Copyright © 2020 やまだのログ All Rights Resarved.</div></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"db_20200921","contentHtml":"\u003cp\u003eこんにちは！\u003cbr\u003e\nユーザーとグループ（チームや組織）をデータベースで表現しようとしている、やまだです。\u003c/p\u003e\n\u003cp\u003e今回はデータベース（今回はMySQL）で、ユーザーとそれらが所属するグループの表現をしようとしたときのメモを記載します。\nまず、以下のように\u003cstrong\u003eusers\u003c/strong\u003eと\u003cstrong\u003egroups\u003c/strong\u003eのテーブルを定義します。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e■usersテーブル\u003c/strong\u003e\n|  id  |  name  |\n| ---- | ---- |\n|  1  |  やまだ  |\n|  2  |  嫁  |\n|  3  |  ながさわ  |\n|  4  |  まつ  |\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e■groupsテーブル\u003c/strong\u003e\n|  id  |  name  |\n| ---- | ---- |\n|  1  |  やまだ家  |\n|  2  |  女優  |\n|  3  |  女性  |\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eそれぞれのユーザーがどこのグループに所属しているのかを表現するのが良いでしょうか。\n自分がこれを始めてみた時には、既存の\u003cstrong\u003eusers\u003c/strong\u003eもしくは\u003cstrong\u003egroups\u003c/strong\u003eのテーブルどちらかに配列のフィールドを追加し、そこに都度ユーザーやグループを登録していけばいいのではないかと考えました。（PHPのarray_pushのように…）\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e例えばこんなふうに…\u003c/strong\u003e\n|  id  |  name  |  users  |\n| ---- | ---- | ---- |\n|  1  |  やまだ家  |  [1, 2]  |\n|  2  |  女優  |  [3, 4]  |\n|  3  |  女性  |  [2, 3, 4]  |\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003eしかしこれはアンチパターンと呼ばれるものです！\u003c/strong\u003e\u003c/p\u003e\n\u003cp\u003eでは、なぜだめなのか考えてみましょう。\n例えば「嫁」が所属するグループを調べたいとき、おそらく「LIKE句」等で検索する方法に行きつくのではないでしょうか。\n少しのデータをならそこまで影響は出ないかもしれませんが、データが増えるにつれてパフォーマンスがおちたり、おなじ文字列を含むものまで一緒に取得することになってしまいませんか？（もちろん，をうまく利用して一致させる事もできそうですが）\u003c/p\u003e\n\u003cp\u003eこれを解決する方法は以下のような\u003cstrong\u003e交差テーブル\u003c/strong\u003eをつくってあげることです。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e■交差テーブル（group_user）\u003c/strong\u003e\n|  user_id  |  group_id  |\n| ---- | ---- |\n|  1  |  1  |\n|  2  |  1  |\n|  2  |  3  |\n|  3  |  2  |\n|  3  |  3  |\n|  4  |  2  |\n|  4  |  3  |\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e■usersテーブル\u003c/strong\u003e\n|  id  |  name  |\n| ---- | ---- |\n|  1  |  やまだ  |\n|  2  |  嫁  |\n|  3  |  ながさわ  |\n|  4  |  まつ  |\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\n\u003cp\u003e\u003cstrong\u003e■groupsテーブル\u003c/strong\u003e\n|  id  |  name  |\n| ---- | ---- |\n|  1  |  やまだ家  |\n|  2  |  女優  |\n|  3  |  女性  |\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eこのようにすることで、例えば「嫁」の所属するグループを知りたいときは以下のようなSQLを叩けばほしい情報を取得することができます。\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003eSELECT gu.group_id, g.name FROM users AS u\n    INNER JOIN group_user AS gu ON u.id = gu.user_id\n    INNER JOIN groups AS g ON gu.group_id = g.id\nWHERE u.id = 2;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e■所属グループ\u003c/strong\u003e\n|  group_id  |  name  |\n| ---- | ---- |\n|  1  |  やまだ家  |\n|  2  |  女優  |\n|  3  |  女性  |\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e以上でアンチパターンを回避したユーザーのグループ管理ができるかと思います！ではまた！\u003c/p\u003e\n\u003ch2\u003e参考\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca href=\"http://www.flint.jp/blog/?entry=23\"\u003e関係データベースにおける配列の表現\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://kyabatalian.hatenablog.com/entry/2016/12/19/193430\"\u003eデータベース論理設計のアンチパターン\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"https://qiita.com/matsuhisa_h/items/6b4e552f4b6eb7d72d60\"\u003eSQLアンチパターン：ジェイウォーク（信号無視）\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n","title":"ユーザーと所属するグループをデータベースで表現する","created":"2020-09-21","modified":"2020-09-21","category":"データベース","tags":["データベース","設計","MySQL","アンチパターン"]}},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"db_20200921"},"buildId":"8noyc0hP5TjQz7lEYqFu7","assetPrefix":"/next-blog","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/next-blog/_next/static/runtime/polyfills-fcdaceb475a9116d3d01.js"></script><script async="" data-next-page="/posts/[id]" src="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/pages/posts/%5Bid%5D.js"></script><script async="" data-next-page="/_app" src="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/pages/_app.js"></script><script src="/next-blog/_next/static/runtime/webpack-b65cab0b00afd201cbda.js" async=""></script><script src="/next-blog/_next/static/chunks/framework.98c1b221acb34aa9927b.js" async=""></script><script src="/next-blog/_next/static/chunks/commons.2c828375ee41a97809f1.js" async=""></script><script src="/next-blog/_next/static/runtime/main-cd43ac25262d340309c6.js" async=""></script><script src="/next-blog/_next/static/chunks/9022090fdbf2bac6b7341145da0c987934062cdf.1fa8c98d2e476ae4afa4.js" async=""></script><script src="/next-blog/_next/static/chunks/e3a9f44c72ef9f951fe739c8246570398eff8d58.6f64ddc331fea60ad50f.js" async=""></script><script src="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/_buildManifest.js" async=""></script><script src="/next-blog/_next/static/8noyc0hP5TjQz7lEYqFu7/_ssgManifest.js" async=""></script></body></html>
